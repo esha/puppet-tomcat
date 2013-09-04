@@ -1,0 +1,60 @@
+#!/bin/bash
+#
+# This file is managed by Puppet. DO NOT EDIT.
+#
+# tomcat      This shell script takes care of starting and stopping Tomcat
+#
+# chkconfig: - 80 20
+#
+### BEGIN INIT INFO
+# Provides: tomcat
+# Required-Start: $network $syslog
+# Required-Stop: $network $syslog
+# Default-Start:
+# Default-Stop:
+# Short-Description: start and stop tomcat
+### END INIT INFO
+
+TOMCAT_USER="<%= @tomcat_user %>"
+_USER=`id -nu`
+if [ ! $_USER == $TOMCAT_USER ]; then
+    if [ $_USER == "root" ]; then
+        exec su -l $TOMCAT_USER -c "$0 $@"
+    fi
+    echo "Script must be run from $TOMCAT_USER or root. You are '$_USER'."
+    exit 1
+fi
+
+export CATALINA_HOME="<%= @catalina_home %>"
+export CATALINA_BASE="<%= @catalina_base %>"
+
+function start() {
+    ${CATALINA_HOME}/bin/catalina.sh start || RETVAL="4"
+}
+
+function stop() {
+    ${CATALINA_HOME}/bin/catalina.sh stop || RETVAL="4"
+}
+
+function usage() {
+    echo "Usage: $0 {start|stop|restart}"
+    RETVAL="2"
+}
+
+RETVAL="0"
+case "$1" in
+    start)
+        start
+        ;;
+    stop)
+        stop
+        ;;
+    restart)
+        stop
+        start
+        ;;
+    *)
+        usage
+        ;;
+esac
+exit $RETVAL
