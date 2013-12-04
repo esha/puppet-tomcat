@@ -1,16 +1,17 @@
 # Class: tomcat
 #
 class tomcat(
-  $source       = undef,
-  $version      = '7.0.42',
-  $install_dir  = '/opt/tomcat',
-  $instance_dir = '/var/tomcat',
-  $auto_upgrade = false,
-  $owner        = 'tomcat',
-  $group        = 'tomcat',
-  $hostname     = 'localhost',
-  $jre_home     = '/etc/alternatives/jre',
-  $java_opts    = ''
+  $source        = undef,
+  $version       = '7.0.42',
+  $install_dir   = '/opt/tomcat',
+  $instance_dir  = '/var/tomcat',
+  $auto_upgrade  = false,
+  $owner         = 'tomcat',
+  $group         = 'tomcat',
+  $hostname      = 'localhost',
+  $jre_home      = '/etc/alternatives/jre',
+  $java_opts     = '',
+  $catalina_opts = ''
 ) {
 
   $current_dir = "${install_dir}/current"
@@ -30,7 +31,8 @@ class tomcat(
     group         => $group,
     hostname      => $hostname,
     jre_home      => $jre_home,
-    java_opts     => $java_opts
+    java_opts     => $java_opts,
+    catalina_opts => $catalina_opts
   }
 
   class { 'tomcat::service':

@@ -3,6 +3,7 @@
 class tomcat::config (
   $catalina_home,
   $catalina_base,
+  $catalina_opts,
   $owner,
   $group,
   $hostname,
