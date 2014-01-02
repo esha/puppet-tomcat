@@ -1,5 +1,5 @@
 name         'esha-tomcat'
-version      '0.1.0'
+version      '1.0.0'
 author       'ESHA Research'
 summary      'Puppet Tomcat Module'
 description  'Puppet module for managing Apache Tomcat'
