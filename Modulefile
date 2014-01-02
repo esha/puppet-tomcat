@@ -1,0 +1,11 @@
+name         'esha-tomcat'
+version      '1.0.0'
+author       'ESHA Research'
+summary      'Puppet Tomcat Module'
+description  'Puppet module for managing Apache Tomcat'
+license      'Apache License, Version 2.0'
+source       'git@github.com:esha/puppet-tomcat.git'
+project_page 'https://github.com/esha/puppet-tomcat'
+
+dependency 'nanliu/staging', '>= 0.3.0'
+dependency 'puppetlabs/stdlib', '>= 0.1.6'
